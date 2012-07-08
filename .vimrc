@@ -1,3 +1,5 @@
+call pathogen#runtime_append_all_bundles()
+
 " F vi
 set nocompatible
 " no goofy buttons
@@ -62,6 +64,7 @@ noremap <silent> ,cl :wincmd l<cr>:close<cr>
 nmap <C-space> ea<C-n>
 imap <C-space> <C-n>
 
+map <leader>t :CommandT<CR>
 map <leader>T :CommandTFlush<CR>:CommandT<CR>
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
@@ -88,7 +91,7 @@ set lbr
 " no beeps
 set vb
 
-set wildignore+=vendor,tmp,target,.privatebuild
+set wildignore+=.git,tmp,log,*.png,*.jpg,*.jpeg,*.gif,public/analytic,public/fonts,public/sounds,public/images,public/flash
 
 set guifont=Inconsolata:h18.00
 
@@ -162,3 +165,11 @@ function! <SID>ReformatAndClean()
   call cursor(l, c)  
 endfunction
 
+" START CHRIS CONFIGS
+nmap ,l :set list!<CR>
+
+" TextMate style invisibles
+set listchars=tab:▸\ ,eol:¬
+
+" JSON highlighting (treat JSON as JS)
+autocmd BufNewFile,BufRead *.json set ft=javascript
